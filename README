@@ -1,0 +1,9 @@
+The goal of this project is to implement a functioning monitor
+for Live for Speed OutGauge on the Arduino microcontroller
+architecture.
+
+Possible uses could be
+ - a simple LCD display with live game data
+ - a car gauge cluster with live game data
+ - ?
+ - PROFIT
