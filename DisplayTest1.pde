@@ -102,6 +102,5 @@ void loop() {
 
     updateDisplay(p);
   }
-  
-  delay(100);
+
 }
