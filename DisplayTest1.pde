@@ -48,6 +48,7 @@ LiquidCrystal lcd(20, 19, 21, 26, 25, 24, 23);
 
 int max_speed = 0;
 int max_rpm = 0;
+char car[4] = { 0,0,0,0 };
 
 // display buffers
 char* line[4];
@@ -56,6 +57,14 @@ void updateDisplay(UDPOutGaugePacket *p) {
 
   int speed = (int)(p->speed*3.6);
   int rpm = (int)p->rpm;
+  
+  // if the car changes, reset max values
+  if (strncmp(p->car,car,4)) {
+    strncpy(car,p->car,4);
+    max_speed=0;
+    max_rpm=0;
+  }
+  
   if (speed>max_speed) max_speed=speed;
   if (rpm>max_rpm) max_rpm=rpm;
 
