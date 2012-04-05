@@ -54,9 +54,9 @@ char car[4] = { 0,0,0,0 };
 char* line[4];
 
 void hashbar(char* str,int offset, int length, float value, int max_value) {
-  int n = length*(value/max_value);
+  int n = length*(value/(max_value-100));
   for (int i=0; i<length; i++) {
-    str[i+offset]= (i<=n) ? '#' : ' ';
+    str[i+offset]= (i<n) ? '#' : ' ';
   }
 }
 
