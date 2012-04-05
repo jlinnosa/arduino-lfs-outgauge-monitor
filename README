@@ -3,7 +3,25 @@ for Live for Speed OutGauge on the Arduino microcontroller
 architecture.
 
 Possible uses could be
- - a simple LCD display with live game data
+ - a simple LCD display with live game data (working!)
  - a car gauge cluster with live game data
  - ?
  - PROFIT
+
+My development environment
+--------------------------
+
+ - Ubuntu 11.10 Arduino IDE
+ - Arduino Mega2560
+ - Ethernet Shield
+ - Hitachi HD44780 compatible 20x4 LCD display
+
+How to get it to work
+---------------------
+
+Clone this project under your sketch directory as DisplayTest1 and
+open it in Arduino IDE.
+
+  cd ~/sketchbook
+  git clone git://github.com/jlinnosa/arduino-lfs-outgauge-monitor.git DisplayTest1
+
