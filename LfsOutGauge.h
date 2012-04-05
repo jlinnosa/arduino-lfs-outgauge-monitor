@@ -29,41 +29,51 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 struct UDPOutGaugePacket {
-	long	time;
-	char	car[4];
-	word	flags;
-	byte	gear;
-	byte	spare0;
-	float	speed;
-	float	rpm;
-	float	boost;
-	float	engtemp;
-	float	fuel;
-	float	oilpress;
-	float	spare1;
-	float	spare2;
-	float	spare3;
-	float	throttle;
-	float	brake;
-	float	clutch;
-	char	display1[16];
-	char	display2[16];
-	long	id;
+	long time;
+	char car[4];
+	word flags;
+	byte gear;
+	byte spare0;
+	float speed;
+	float rpm;
+	float boost;
+	float engtemp;
+	float fuel;
+	float oilpress;
+	float spare1;
+	float spare2;
+	float spare3;
+	float throttle;
+	float brake;
+	float clutch;
+	char display1[16];
+	char display2[16];
+	long id;
 };
 
-char gearChar(int g) {
-  switch (g) {
-    case 0: return 'r';
-    case 1: return 'n';
-    case 2: return '1';
-    case 3: return '2';
-    case 4: return '3';
-    case 5: return '4';
-    case 6: return '5';
-    case 7: return '6';
-    case 8: return '7';
-  }
-  return '*';
+char gearChar(int g)
+{
+	switch (g) {
+	case 0:
+		return 'r';
+	case 1:
+		return 'n';
+	case 2:
+		return '1';
+	case 3:
+		return '2';
+	case 4:
+		return '3';
+	case 5:
+		return '4';
+	case 6:
+		return '5';
+	case 7:
+		return '6';
+	case 8:
+		return '7';
+	}
+	return '*';
 }
 
 #endif
