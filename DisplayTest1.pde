@@ -53,6 +53,13 @@ char car[4] = { 0,0,0,0 };
 // display buffers
 char* line[4];
 
+void hashbar(char* str,int offset, int length, float value, int max_value) {
+  int n = length*(value/max_value);
+  for (int i=0; i<length; i++) {
+    str[i+offset]= (i<=n) ? '#' : ' ';
+  }
+}
+
 void updateDisplay(UDPOutGaugePacket *p) {
 
   int speed = (int)(p->speed*3.6);
@@ -72,6 +79,8 @@ void updateDisplay(UDPOutGaugePacket *p) {
   snprintf(line[1],21,"        speed   rpm ");
   snprintf(line[2],21,"____.    %03d   %05d",max_speed,max_rpm);
   snprintf(line[3],21,"%-4s|",p->car);
+  hashbar(line[3],5,15,p->rpm,max_rpm);
+  line[3][20]=0;
   for (int i=0; i<4; i++) {
     lcd.setCursor(0,i);
     lcd.print(line[i]);
