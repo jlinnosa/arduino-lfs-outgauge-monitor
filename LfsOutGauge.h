@@ -27,13 +27,14 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef LfsOutGauge_h
 #define LfsOutGauge_h
 
+#include <stdint.h>
 
 struct UDPOutGaugePacket {
-	long time;
+	uint32_t time;
 	char car[4];
-	word flags;
-	byte gear;
-	byte spare0;
+	uint16_t flags;
+	uint8_t gear;
+	uint8_t spare0;
 	float speed;
 	float rpm;
 	float boost;
@@ -48,7 +49,7 @@ struct UDPOutGaugePacket {
 	float clutch;
 	char display1[16];
 	char display2[16];
-	long id;
+	uint32_t id;
 };
 
 char gearChar(int g)

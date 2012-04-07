@@ -30,6 +30,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 #include <stdio.h>
+#include <stdint.h>
 #include <SPI.h>		// needed for Arduino versions later than 0018
 #include <Ethernet.h>
 #include <Udp.h>		// UDP library from: bjoern@cs.stanford.edu 12/30/2008
@@ -37,35 +38,38 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <LiquidCrystal.h>
 
 // do customize these to fit your environment...
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte ip[] = { 192, 168, 0, 177 };
+uint8_t mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+uint8_t ip[] = { 192, 168, 0, 177 };
 
-unsigned int localPort = 8888;
+uint16_t localPort = 8888;
+
 
 char packetBuffer[UDP_TX_PACKET_MAX_SIZE];
 
 // initialize LCD object
 LiquidCrystal lcd(20, 19, 21, 26, 25, 24, 23);
 
-int max_speed = 0;
-int max_rpm = 0;
+// these are for the updateDisplay routine
+uint16_t max_speed = 0;
+uint16_t max_rpm = 0;
 char car[4] = { 0, 0, 0, 0 };
 
 // display buffers
 char *line[4];
 
-void hashbar(char *str, int offset, int length, float value, int max_value)
+void hashbar(char *str, uint8_t offset, uint8_t length, float value,
+	     uint16_t max_value)
 {
-	int n = length * (value / (max_value - 100));
-	for (int i = 0; i < length; i++) {
+	uint8_t n = length * (value / (max_value - 100));
+	for (uint8_t i = 0; i < length; i++) {
 		str[i + offset] = (i < n) ? '#' : ' ';
 	}
 }
 
 void updateDisplay(UDPOutGaugePacket * p)
 {
-	int speed = (int) (p->speed * 3.6);
-	int rpm = (int) p->rpm;
+	uint16_t speed = (uint16_t) (p->speed * 3.6);
+	uint16_t rpm = (uint16_t) p->rpm;
 
 	// if the car changes, reset max values
 	if (strncmp(p->car, car, 4)) {
@@ -86,7 +90,7 @@ void updateDisplay(UDPOutGaugePacket * p)
 	snprintf(line[3], 21, "%-4s|", p->car);
 	hashbar(line[3], 5, 15, p->rpm, max_rpm);
 	line[3][20] = 0;
-	for (int i = 0; i < 4; i++) {
+	for (uint8_t i = 0; i < 4; i++) {
 		lcd.setCursor(0, i);
 		lcd.print(line[i]);
 	}
@@ -100,16 +104,16 @@ void setup()
 	lcd.setCursor(0, 1);
 	lcd.print("   Hello, World!");
 
-	for (int i = 0; i < 4; i++)
+	for (uint8_t i = 0; i < 4; i++)
 		line[i] = (char *) malloc(21);
 }
 
 void loop()
 {
-	byte remoteIp[4];
-	unsigned int remotePort;
+	uint8_t remoteIp[4];
+	uint16_t remotePort;
 
-	int packetSize = Udp.available();
+	int16_t packetSize = Udp.available();
 	if (packetSize) {
 		Udp.readPacket(packetBuffer, UDP_TX_PACKET_MAX_SIZE,
 			       remoteIp, remotePort);
