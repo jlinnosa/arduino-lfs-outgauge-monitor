@@ -34,13 +34,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <SPI.h>		// needed for Arduino versions later than 0018
 #include <Ethernet.h>
 #include <Udp.h>		// UDP library from: bjoern@cs.stanford.edu 12/30/2008
-#include "LfsOutGauge.h"
+#include <LfsOutGauge.h>
 #include <LiquidCrystal.h>
 
 // do customize these to fit your environment...
 uint8_t mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 uint8_t ip[] = { 192, 168, 0, 177 };
-
 uint16_t localPort = 8888;
 
 
