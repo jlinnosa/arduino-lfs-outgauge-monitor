@@ -34,23 +34,42 @@ struct UDPOutGaugePacket {
 	char car[4];
 	uint16_t flags;
 	uint8_t gear;
-	uint8_t spare0;
+	uint8_t player_id;
 	float speed;
 	float rpm;
 	float boost;
 	float engtemp;
 	float fuel;
 	float oilpress;
-	float spare1;
-	float spare2;
-	float spare3;
+	float oiltemp;
+	uint32_t dashlights;
+	uint32_t showlights;
 	float throttle;
 	float brake;
 	float clutch;
 	char display1[16];
 	char display2[16];
-	uint32_t id;
+	int32_t id;
 };
+
+#define LFS_MAX_PACKET_SIZE sizeof(UDPOutGaugePacket)
+
+#define OG_SHIFT     0x0001
+#define OG_CTRL      0x0002
+#define OG_TURBO     0x2000
+#define OG_KM        0x4000
+#define OG_BAR       0x8000
+
+#define DL_SHIFT     0x0001
+#define DL_FULLBEAM  0x0002
+#define DL_HANDBRAKE 0x0004
+#define DL_PITSPEED  0x0008
+#define DL_TC        0x0010
+#define DL_SIGNAL_L  0x0020
+#define DL_SIGNAL_R  0x0040
+#define DL_OILWARN   0x0080
+#define DL_BATTERY   0x0100
+#define DL_ABS       0x0200
 
 char gearChar(int g)
 {
