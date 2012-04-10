@@ -44,7 +44,7 @@ uint8_t ip[] = { 192, 168, 0, 177 };
 uint16_t localPort = 8888;
 
 
-char packetBuffer[UDP_TX_PACKET_MAX_SIZE];
+char packetBuffer[LFS_MAX_PACKET_SIZE];
 
 // initialize LCD object
 LiquidCrystal lcd(20, 19, 21, 26, 25, 24, 23);
@@ -115,7 +115,7 @@ void loop()
 
 	int16_t packetSize = Udp.available();
 	if (packetSize) {
-		Udp.readPacket(packetBuffer, UDP_TX_PACKET_MAX_SIZE,
+		Udp.readPacket(packetBuffer, LFS_MAX_PACKET_SIZE,
 			       remoteIp, remotePort);
 		UDPOutGaugePacket *p =
 		    ((UDPOutGaugePacket *) & packetBuffer);
