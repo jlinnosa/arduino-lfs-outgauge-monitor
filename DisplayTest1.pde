@@ -70,6 +70,8 @@ void updateDisplay(UDPOutGaugePacket * p)
 {
 	uint16_t speed = (uint16_t) (p->speed * 3.6);
 	uint16_t rpm = (uint16_t) p->rpm;
+	char hb =
+	    (p->dashlights & p->showlights & DL_HANDBRAKE) ? 'H' : '-';
 
 	// if the car changes, reset max values
 	if (strncmp(p->car, car, 4)) {
@@ -83,10 +85,10 @@ void updateDisplay(UDPOutGaugePacket * p)
 	if (rpm > max_rpm)
 		max_rpm = rpm;
 
-	snprintf(line[0], 21, "g:%c      %03d   %05d", gearChar(p->gear),
-		 speed, rpm);
-	snprintf(line[1], 21, "        speed   rpm ");
-	snprintf(line[2], 21, "____.    %03d   %05d", max_speed, max_rpm);
+	snprintf(line[0], 21, "g:%c    %03d  %c  %05d", gearChar(p->gear),
+		 speed, hb, rpm);
+	snprintf(line[1], 21, "p:%-3d speed     rpm ", p->player_id);
+	snprintf(line[2], 21, "____.  %03d     %05d", max_speed, max_rpm);
 	snprintf(line[3], 21, "%-4s|", p->car);
 	hashbar(line[3], 5, 15, p->rpm, max_rpm);
 	line[3][20] = 0;
