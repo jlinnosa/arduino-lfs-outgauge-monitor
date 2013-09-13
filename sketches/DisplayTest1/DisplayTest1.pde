@@ -40,6 +40,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 // do customize these to fit your environment...
 uint8_t mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 uint8_t ip[] = { 192, 168, 0, 177 };
+
 uint16_t localPort = 8888;
 
 

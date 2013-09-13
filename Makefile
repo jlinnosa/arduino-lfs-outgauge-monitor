@@ -1,5 +1,5 @@
 indent:
-	indent -kr -i8 *.pde *.h
+	find . -regex '.*\.\(h\|pde\)' -exec indent -v -kr -i8 '{}' +
 
 install:
 	[ -d ~/sketchbook/libraries ] || mkdir -p ~/sketchbook/libraries 
