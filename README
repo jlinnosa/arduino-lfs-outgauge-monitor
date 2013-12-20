@@ -3,18 +3,20 @@ for Live for Speed OutGauge on the Arduino microcontroller
 architecture.
 
 Possible uses could be
- - a simple LCD display with live game data (working!)
- - a car gauge cluster with live game data
+ - a simple LCD display with live game data (working! DisplayTest1)
+ - a car gauge cluster with live game data (lights with RelayTest1)
  - ?
  - PROFIT
 
 My development environment
 --------------------------
 
- - Ubuntu 11.10 Arduino IDE
+ - Crunchbang Waldorf (64-bit)
+ - Arduino IDE 1.0.1
  - Arduino Mega2560
  - Ethernet Shield
  - Hitachi HD44780 compatible 20x4 LCD display
+ - "8 Relay Module" from dx.com
 
 How to get it to work
 ---------------------
