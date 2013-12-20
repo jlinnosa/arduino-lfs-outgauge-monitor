@@ -3,5 +3,8 @@ indent:
 
 install:
 	[ -d ~/sketchbook/libraries ] || mkdir -p ~/sketchbook/libraries 
-	cp -R sketches/* ~/sketchbook
-	cp -R libraries/* ~/sketchbook/libraries
+	find `pwd`/sketches -mindepth 1 -maxdepth 1 -type d -exec ln -sf '{}' ~/sketchbook \;
+	find `pwd`/libraries -mindepth 1 -maxdepth 1 -type d -exec ln -sf '{}' ~/sketchbook/libraries \;
+
+clean:
+	find . -type f -name '*~' -exec rm '{}' \;
